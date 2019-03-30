@@ -15,7 +15,7 @@ class Submit {
 
 class UI {
     static displaySubmited() {
-        const submited = Store.getSutmit();
+        const submited = Store.getSubmit();
         submited.forEach((submit) => UI.addSubmitToList(submit));
     }
     //add submited
@@ -30,7 +30,7 @@ class UI {
         <tr><td><strong>Email :</strong> ${submit.email}</td></tr>
         <tr><td><strong>Message : </strong>${submit.message}</td></tr>
         <br>
-        <tr><input type='submit' class='delete' value='Remove'></tr>
+        <tr><input type='submit' class='btn btn-danger btn-sm delete' value='Remove'></tr>
         `;
         list.appendChild(row);
     }
@@ -43,27 +43,32 @@ class UI {
     }
 
     //show alert
-    static showAlert(msg, className) {
-        const div = document.createElement('div');
-        div.className = `alert alert-${className}`;
-        div.appendChild(document.createTextNodeme(msg));
-        const container = document.querySelector('.main');
-        const form = document.querySelector('#submit-form');
-        container.insertBefore(div, form);
-        setTimeout(() => document.querySelector('.alert').remove, 3000);
-    } 
+
+    //static showAlert(message, className) {
+      //  const div = document.createElement('div');
+       // div.className = `alert alert-${className}`;
+       // div.appendChild(document.createTextNodeme(message));
+       // const container = document.querySelector('.main');
+       // const form = document.querySelector('#submit-form');
+       // container.insertBefore(div, form);
+       // setTimeout(() => document.querySelector('.alert').remove, 3000);
+    //} 
   
     //clear fields
-    static clearField() {
-        document.querySelector('#name').value = '';
-        document.querySelector('#subject').value = '';
-        document.querySelector('#email').value = '';
-        document.querySelector('#message').value = '';
-    }
+	static clearFields() {
+		document.querySelector('#subject').value = '';
+		document.querySelector('#name').value = '';
+		document.querySelector('#email').value = '';
+		document.querySelector('#message').value = '';
+	  }
 }
 
+document.addEventListener('DOMContentLoaded',UI.displayContact);
+
+document.querySelector('#contact')
+
 class Store {
-    static getSutmit() {
+    static getSubmit() {
         let submited;
         if (localStorage.getItem('submited') === null) {
             submited = [];
@@ -73,7 +78,7 @@ class Store {
         return submited;
     }
     static addsubmit(submit) {
-        const submited = Store.getsutmit();
+        const submited = Store.getsubmit();
         submited.push(submit);
         localStorage.setItem('submited', JSON.stringify(submited));
     }
@@ -102,7 +107,7 @@ document.querySelector('#submit-form').addEventListener('submit', (e) => {
     const message = document.querySelector('#message').value;
     //validate
     if (name === '' || subject === '' || email === '' || message === '') {
-        UI.showAlert('Plase fill in all field', 'danger');
+       alert('Plase fill in all field');
     } else {
         //creat submit class
         const submit = new Submit(name, subject, email, message);
@@ -112,9 +117,6 @@ document.querySelector('#submit-form').addEventListener('submit', (e) => {
 
         //add to store
         Store.addSubmit(submit);
-
-        //show submission
-        UI.showAlert('Your submission are added', 'success');
 
         //UI clear fields
         UI.clearField();
