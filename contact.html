@@ -33,20 +33,20 @@
 							<header>
 								<h2>Contact Me</h2>
 							</header>
-							<form action="#" method="post">
+							<form action="" method="post" id="submit-form">
 								<div>
 									<div class="row">
 										<div class="col-6 col-12-medium">
-											<input type="text" name="name" placeholder="Name" />
+											<input type="text" id="name" placeholder="Name" />
 										</div>
 										<div class="col-6 col-12-medium">
-											<input type="text" name="email" placeholder="Email" />
+											<input type="text" id="email" placeholder="Email" />
 										</div>
 										<div class="col-12">
-											<input type="text" name="subject" placeholder="Subject" />
+											<input type="text" id="subject" placeholder="Subject" />
 										</div>
 										<div class="col-12">
-											<textarea name="message" placeholder="Message" rows="6"></textarea>
+											<textarea id="message" placeholder="Message" rows="6"></textarea>
 										</div>
 										<div class="col-12">
 											<input type="submit" value="Send Message" />
@@ -54,6 +54,7 @@
 									</div>
 								</div>
 							</form>
+							<div id="submit-list"></div>
 						</article>
 
 					</div>
@@ -73,6 +74,7 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="assets/js/submit.js"></script>
 
 	</body>
 </html>
